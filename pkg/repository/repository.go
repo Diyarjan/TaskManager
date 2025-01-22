@@ -1,12 +1,18 @@
 package repository
 
-import "github.com/jmoiron/sqlx"
+import (
+	"context"
 
-type Taskslist interface {
+	"github.com/Diyarjan/TasksManager/models"
+	"github.com/jmoiron/sqlx"
+)
+
+type Tasks interface {
+	ListTasks(ctx context.Context) ([]models.ListTask, error)
 }
 
 type Repository struct {
-	Taskslist
+	Tasks
 }
 
 func NewRepository(db *sqlx.DB) *Repository {

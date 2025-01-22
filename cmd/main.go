@@ -4,6 +4,7 @@ import (
 	task "github.com/Diyarjan/TasksManager"
 	"github.com/Diyarjan/TasksManager/pkg/handler"
 	"github.com/Diyarjan/TasksManager/pkg/repository"
+	"github.com/Diyarjan/TasksManager/pkg/repository/db"
 	"github.com/Diyarjan/TasksManager/pkg/service"
 	_ "github.com/lib/pq"
 	"github.com/sirupsen/logrus"
@@ -17,7 +18,7 @@ func main() {
 		logrus.Fatalf("error initializing configs: %s", err.Error())
 	}
 
-	db, err := repository.NewPostgresDB(repository.Config{
+	db, err := db.NewPostgresDB(db.Config{
 		Host:     viper.GetString("db.host"),
 		Port:     viper.GetString("db.port"),
 		Username: viper.GetString("db.username"),
